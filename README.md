@@ -18,7 +18,9 @@ A client needs to know what is happening on the social networks. All of them. Ri
 The three social networks the client is interested in are:
 
 http://codefight.davidbanham.com/twitter
+
 http://codefight.davidbanham.com/facebook
+
 http://codefight.davidbanham.com/instagram
 
 Because these social networks are so webscale, they don't always respond predictably. The delay in their response almost appears like someone waited for a random integer of seconds before responding!
