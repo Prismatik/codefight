@@ -1,0 +1,22 @@
+{
+  "name": "codefight",
+  "version": "0.0.0",
+  "description": "This is to provide a way to showcase new approaches, novel techniques, and general cleverness.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Prismatik/codefight.git"
+  },
+  "author": "jed.watson@me.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Prismatik/codefight/issues"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "request": "~2.44.0"
+  }
+}
