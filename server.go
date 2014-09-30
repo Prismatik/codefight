@@ -5,11 +5,29 @@ import (
   "log"
   "os"
   "io/ioutil"
+  "encoding/json"
 )
 
+func handleErr(target string, result []byte, cb chan<- string) {
+  type Social struct {
+    Name, Username string
+    Picture, Status, Tweet string
+  }
+  var socials []Social
+  err := json.Unmarshal(result, &socials)
+  if err != nil{
+    cb <- "\""+target+"\": \"error\""
+  }
+}
+
 func fetch(target string, cb chan<- string) {
-  resp, _ := http.Get("http://codefight.davidbanham.com/"+target)
-  result, _ := ioutil.ReadAll(resp.Body)
+  resp, err := http.Get("http://codefight.davidbanham.com/"+target)
+  if err != nil { cb <- "\""+target+"\": \"error\"" }
+
+  result, err := ioutil.ReadAll(resp.Body)
+  if err != nil { cb <- "\""+target+"\": \"error\"" }
+
+  handleErr(target, result, cb)
   cb <- "\""+target+"\": " + string(result)
 }
 
