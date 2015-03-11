@@ -1,23 +1,28 @@
-var http = require('http');
-var server = http.createServer();
+var express = require('express');
+var request = require('request');
+var app = express();
 
-server.on('request', function(req, res) {
-	var messages = {};
-	var services = ['twitter', 'facebook', 'instagram'];
+var bodyParser = require('body-parser');
+var urlencode = bodyParser.urlencoded({ extended: false });
 
-	return services.forEach(function(service) {
-		return http.get({
-			hostname: 'codefight.davidbanham.com',
-			path: '/' + service
-		}, function(data) {
-				return data.on('data', function(chunk) {
-					messages[service] = JSON.parse(chunk.toString());
-					if (Object.keys(messages).length === services.length) {
-						return res.end(JSON.stringify(messages));
-					}
-				});
-		});
-	});
+var service = ['twitter'];
+
+request('http://codefight.davidbanham.com/twitter', function(error, res, body) {
+	if (!error && res.statusCode == 200) {
+		console.log(body);
+	}
 });
 
-server.listen(3000);
+request('http://codefight.davidbanham.com/facebook', function(error, res, body) {
+	if (!error && res.statusCode == 200) {
+		console.log(body);
+	}
+});
+
+request('http://codefight.davidbanham.com/instagram', function(error, res, body) {
+	if (!error && res.statusCode == 200) {
+		console.log(body);
+	}
+});
+
+app.listen(3000);
