@@ -1,11 +1,23 @@
-var express = require('express');
-var app = express();
+var http = require('http');
+var server = http.createServer();
 
-var bodyParser = require('body-parser');
-var urlencode = bodyParser.urlencoded({ extended: false });
+server.on('request', function(req, res) {
+	var messages = {};
+	var services = ['twitter', 'facebook', 'instagram'];
 
-app.get('/', function(req, res) {
-	res.sendStatus(200);
+	return services.forEach(function(service) {
+		return http.get({
+			hostname: 'codefight.davidbanham.com',
+			path: '/' + service
+		}, function(data) {
+				return data.on('data', function(chunk) {
+					messages[service] = JSON.parse(chunk.toString());
+					if (Object.keys(messages).length === services.length) {
+						return res.end(JSON.stringify(messages));
+					}
+				});
+		});
+	});
 });
 
-app.listen(3000);
+server.listen(3000);
