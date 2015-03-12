@@ -1,0 +1,19 @@
+{
+  "name": "codefight",
+  "version": "1.0.0",
+  "description": "This is to provide a way to showcase new approaches, novel techniques, and general cleverness.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leo7568/codefight.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leo7568/codefight/issues"
+  },
+  "homepage": "https://github.com/leo7568/codefight"
+}
